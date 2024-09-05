@@ -1,5 +1,5 @@
 {
-  description = "My nix config with flakes";
+  description = "Client nix config with flakes";
 
   inputs = {
     # Nixpkgs

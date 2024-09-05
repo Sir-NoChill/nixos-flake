@@ -6,6 +6,7 @@
   lib,
   config,
   pkgs,
+  xdg,
   ...
 }: {
   # You can import other home-manager modules here
@@ -18,6 +19,9 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    # ./emacs.nix
+    # ./git.nix
+    ./zsh.nix
   ];
 
   nixpkgs = {
@@ -52,19 +56,35 @@
   };
 
   # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  programs.neovim.enable = true;
+  programs.neovim.defaultEditor = true;
+  home.packages = with pkgs; [ 
+    tmux  # terminal multiplexer
+    pdftk  # pdf utils
+    alacritty  # the alacritty terminal
+    oh-my-zsh  # for shell configs
+    thunderbird  # email
+    emacs  # the real os
+    localsend  # airdrop
+  ];
+
+  home.sessionVariables = {
+    TERMINAL = "alacritty";
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = {
+  programs.git = {
     enable = true;
 
     # Configure git settings
     # FIXME this should be a secret
     userName = "Ayrton Chilibeck";
     userEmail = "code@blobfish.icu";
-  }
+  };
+
+  # setup leftwm
+  xdg.configFile."leftwm/config.ron".source = ./leftwm.ron;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

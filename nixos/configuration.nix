@@ -69,9 +69,74 @@
   };
 
   # FIXME: Add the rest of your current configuration
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.loader.systemd-boot.extraEntries = {
+    "debian.conf" = ''
+    title Debian
+    sort-key debian
+    linux /EFI/debian/grubx64.efi
+    '';
+  };
+
+  # Configure the XServer
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkb.variant = "";
+
+    # Setup leftWM as my window manager
+    desktopManager.cinnamon.enable = true;
+    windowManager.leftwm.enable = true;
+  };
+  
+  # Configure networking
+  networking.networkmanager.enable = true;
+  # Allow localsend
+  networking.firewall.allowedTCPPorts = [ 53317 ];
+
+  # Time zone
+  time.timeZone = "America/Edmonton";
+
+  # Internationalization properties
+  i18n.defaultLocale = "en_CA.UTF-8";
 
   # Set your hostname
   networking.hostName = "kaladin";
+
+  # Enable sound with pipewire.
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  # Install firefox.
+  programs.firefox.enable = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    pkgs.efibootmgr
+    pkgs.neovim
+    pkgs.zsh
+    pkgs.alacritty
+    pkgs.dmenu
+    pkgs.xclip
+  ];
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
@@ -88,6 +153,10 @@
       extraGroups = ["wheel"];
     };
   };
+
+  # set the default shell
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
