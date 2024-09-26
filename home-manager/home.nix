@@ -21,6 +21,7 @@
     # ./nvim.nix
     # ./emacs.nix
     # ./git.nix
+    # ./emacs.nix
     ./zsh.nix
   ];
 
@@ -64,10 +65,11 @@
     alacritty  # the alacritty terminal
     oh-my-zsh  # for shell configs
     thunderbird  # email
-    emacs  # the real os
+    # custom-emacs  # the real os
     localsend  # airdrop
     openssh
     cloudflared
+    zotero
   ];
 
   home.sessionVariables = {

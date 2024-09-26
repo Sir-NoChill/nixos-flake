@@ -84,7 +84,7 @@
   # Configure the XServer
   services.xserver = {
     enable = true;
-    layout = "us";
+    xkb.layout = "us";
     xkb.variant = "";
 
     # Setup leftWM as my window manager
@@ -136,6 +136,8 @@
     pkgs.alacritty
     pkgs.dmenu
     pkgs.xclip
+    pkgs.git
+    pkgs.home-manager
   ];
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
