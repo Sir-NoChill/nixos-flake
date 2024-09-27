@@ -1,12 +1,12 @@
 # https://www.heinrichhartmann.com/posts/2021-08-08-nix-emacs/
 {
-  home,
+  programs,
   pkgs,
   fetchFromGitHub,
   ...
 }:
 {
-  home.programs = home.programs ++ [(pkgs.emacs.override {
+  programs = programs ++ [(pkgs.emacs.override {
     withNativeCompilation = true;
   }).overrideAttrs (old : {
     pname = "emacs";

@@ -73,13 +73,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.loader.systemd-boot.extraEntries = {
-    "debian.conf" = ''
-    title Debian
-    sort-key debian
-    linux /EFI/debian/grubx64.efi
-    '';
-  };
+  # boot.loader.systemd-boot.extraEntries = {
+  #   "debian.conf" = ''
+  #   title Debian
+  #   sort-key debian
+  #   linux /EFI/debian/grubx64.efi
+  #   '';
+  # };
 
   # Configure the XServer
   services.xserver = {
@@ -88,7 +88,7 @@
     xkb.variant = "";
 
     # Setup leftWM as my window manager
-    desktopManager.cinnamon.enable = true;
+    desktopManager.cinnamon.enable = false;
     windowManager.leftwm.enable = true;
   };
   
@@ -138,6 +138,9 @@
     pkgs.xclip
     pkgs.git
     pkgs.home-manager
+    pkgs.betterlockscreen
+    pkgs.xautolock
+    pkgs.polybar
   ];
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
