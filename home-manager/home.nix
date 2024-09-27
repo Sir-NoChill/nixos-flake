@@ -30,7 +30,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-      # outputs.overlays.emacs-head
+      outputs.overlays.emacs-head
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -46,49 +46,6 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
-
-      # packageOverrides = pkgs: {
-      #   custom-emacs = (pkgs.emacs.override { 
-      #     imagemagick = pkgs.imagemagickBig;
-      #     withNativeCompilation = true;
-      #   }).overrideAttrs (old : {
-      #     pname = "emacs";
-      #     version = "28.";
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "emacs-mirror";
-      #       repo = "emacs";
-      #       rev = "739b5d0e52d83ec567bd61a5a49ac0e93e0eb469";
-      #       hash = "sha256-4oSLcUDR0MOEt53QOiZSVU8kPJ67GwugmBxdX3F15Ag=";
-      #     };
-      #     patches = [];
-      #     configureFlags = [
-      #       "--with-json"
-      #       "--with-cairo"
-      #       "--without-compress-install"
-      #       "--with-x-toolkit=no"
-      #       "--with-gnutls"
-      #       "--without-gconf"
-      #       "--without-xwidgets"
-      #       "--without-toolkit-scroll-bars"
-      #       "--without-xaw3d"
-      #       "--without-gsettings"
-      #       "--with-mailutils"
-      #       "--with-harfbuzz"
-      #       # FIXME need to figure out why this won't work
-      #       # "--with-imagemagick"
-      #       "--with-jpeg"
-      #       "--with-png"
-      #       "--with-rsvg"
-      #       "--with-tiff"
-      #       "--with-wide-int"
-      #       "--with-xft"
-      #       "--with-xml2"
-      #       "--with-x-toolkit=lucid"
-      #     ];
-      #     preConfigure = "./autogen.sh";
-      #     # buildInputs = old.buildInputs ++ [ autoconf texinfo ];
-      #   });
-      # };
     };
   };
 
