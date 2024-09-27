@@ -30,7 +30,13 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-      outputs.overlays.emacs-head
+      # outputs.overlays.emacs-head
+
+      # Emacs overlay
+      (import (builtins.fetchTarball {
+        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+	sha256 = "115498gaji3396jr76nm25cchdnqm43cyaq3k5qj0qahj5hx34vg";
+      }))
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -74,6 +80,9 @@
     feh
   ];
 
+  # Configure Alacritty
+  xdg.configFile."alacritty/alacritty.toml".source = ./configs/alacritty.toml;
+
   home.sessionVariables = {
     TERMINAL = "alacritty";
   };
@@ -90,12 +99,12 @@
   };
 
   # setup leftwm
-  xdg.configFile."leftwm/config.ron".source = ./leftwm.ron;
+  xdg.configFile."leftwm/config.ron".source = ./configs/leftwm.ron;
   xdg.configFile."leftwm/themes/current".source = pkgs.fetchFromGitHub {
     owner = "Sir-NoChill";
     repo = "ocean-night";
     rev = "master";
-    sha256 = "sha256-gFvoUOBQxANSL3yX5mIK6Xc7g8obZT9OmYUImo3kyXM=";
+    sha256 = "sha256-bSRznV9U64aWDYEVF3kKTjVNnUHJx23N7Xd4XU7Au3M=";
   };
 
   # Nicely reload system units when changing configs
