@@ -108,7 +108,7 @@
     owner = "Sir-NoChill";
     repo = "ocean-night";
     rev = "master";
-    sha256 = "sha256-bSRznV9U64aWDYEVF3kKTjVNnUHJx23N7Xd4XU7Au3M=";
+    sha256 = "sha256-AlgbJoTw8qLC/vRmqJurDBaAPWOHu0JevcOl8wMePAM=";
   };
 
   # Nicely reload system units when changing configs
