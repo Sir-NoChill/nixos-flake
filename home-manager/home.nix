@@ -78,6 +78,10 @@
     nerdfonts
     picom
     feh
+    shellcheck
+    discount
+    flameshot
+    libreoffice-qt
   ];
 
   # Configure Alacritty
